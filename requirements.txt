@@ -1,0 +1,6 @@
+streamlit == 0.68.1
+pandas == 0.25.3
+pandas_datareader ==0.9.0
+numpy == 1.18.1
+scipy == 1.6.0
+
