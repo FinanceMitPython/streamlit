@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd 
 import pandas_datareader as web
+import yfinance
 import numpy as np
 from datetime import datetime, date
 from scipy.optimize import minimize
@@ -30,7 +31,8 @@ df = pd.DataFrame()
 end = datetime.today().strftime("%Y-%m-%d")
 
 for o in options:
-    df[o] = web.DataReader(o, data_source="yahoo", start = start_date, end = end)["Adj Close"]
+    ticker = yfinance.Ticker(o)
+    df[o] = ticker.history(start = start_date, end = end)["Close"]
 
 log_ret = np.log(df/df.shift(1))
 
